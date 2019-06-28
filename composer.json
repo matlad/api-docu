@@ -24,13 +24,19 @@
 			"Ublaboo\\ApiDocu\\Tests\\": "tests"
 		}
 	},
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/matlad/api-router.git"
+        }
+    ],
 	"require": {
 		"php": ">= 7.1.0",
-		"nette/http": "^2.3|^2.4",
-		"nette/application": "^2.3|^2.4",
-		"nette/di": "^2.3|^2.4",
-		"latte/latte": "^2.3|^2.4",
-		"ublaboo/api-router": "~2.0.0"
+		"nette/http": "^3.0",
+		"nette/application": "^3.0",
+		"nette/di": "^3.0",
+		"latte/latte": "^2.5 || ^3.0",
+		"ublaboo/api-router": "dev-nette-3.0"
 	},
 	"require-dev": {
 		"nette/tester": "~1.6.1",
