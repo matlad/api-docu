@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Ublaboo\ApiDocu\DI;
 
 use Nette\DI\CompilerExtension;
+use Nette\DI\Definitions\Definition;
 use Nette\DI\Helpers;
 use Nette\PhpGenerator\ClassType as GClassType;
 use Ublaboo\ApiDocu\Generator;
@@ -35,6 +36,10 @@ class ApiDocuExtension extends CompilerExtension
 		],
 	];
 
+    /**
+     * @var Definition
+     */
+    private $definition;
 
 	public function loadConfiguration(): void
 	{
@@ -51,7 +56,7 @@ class ApiDocuExtension extends CompilerExtension
 			->setClass(Generator::class)
 			->setArguments([$config['apiDir'], $config['httpAuth']]);
 
-		$builder->addDefinition($this->prefix('starter'))
+		$this->definition = $builder->addDefinition($this->prefix('starter'))
 			->setClass(Starter::class)
 			->setArguments([
 				$builder->getDefinition($this->prefix('generator')),
