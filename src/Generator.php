@@ -64,12 +64,12 @@ class Generator
 		}
 
 		/**
-		 * Create index.php
+		 * Create index.html
 		 */
 		$this->generateIndex($sections);
 
 		/**
-		 * Create *.php for each defined ApiRoute
+		 * Create *.html for each defined ApiRoute
 		 */
 		foreach ($sections as $sectionName => $routes) {
 			if (is_array($routes)) {
@@ -113,7 +113,7 @@ class Generator
 		]);
 
 		file_put_contents(
-			"{$this->appDir}/{$fileName}.php",
+			"{$this->appDir}/{$fileName}.html",
 			$this->getHttpAuthSnippet() . $template
 		);
 	}
@@ -128,7 +128,7 @@ class Generator
 		]);
 
 		file_put_contents(
-			"{$this->appDir}/index.php",
+			"{$this->appDir}/index.html",
 			$this->getHttpAuthSnippet() . $template
 		);
 	}
