@@ -36,7 +36,8 @@
 		"nette/application": "^3.0",
 		"nette/di": "^3.0",
 		"latte/latte": "^2.5 || ^3.0",
-		"ublaboo/api-router": "dev-nette-3.0"
+		"ublaboo/api-router": "dev-nette-3.0",
+		"erusev/parsedown": "^1.7"
 	},
 	"require-dev": {
 		"nette/tester": "~1.6.1",
