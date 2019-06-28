@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace Ublaboo\ApiDocu;
 
 use Nette\Application\IRouter;
-use Nette\Application\Request;
 use Nette\Application\Routers\RouteList;
 use Nette\Http;
 use Ublaboo\ApiRouter\ApiRoute;
@@ -69,15 +68,15 @@ class Starter
 	/**
 	 * Event thatis firex when particular ApiRoute is matched
 	 */
-	public function routeMatched(ApiRoute $route, Request $request): void
+	public function routeMatched(ApiRoute $route, array $request): void
 	{
-		if (($format = $request->getParameter(self::API_DOCU_STARTER_QUERY_KEY_GENERATE)) !== null) {
+		if (($format = $request[self::API_DOCU_STARTER_QUERY_KEY_GENERATE] ?? NULL) !== NULL) {
 			$this->generator->generateAll($this->router);
 
 			exit(0);
 		}
 
-		if (($format = $request->getParameter(self::API_DOCU_STARTER_QUERY_KEY_TARGET)) !== null) {
+		if (($format = $request[self::API_DOCU_STARTER_QUERY_KEY_TARGET] ?? NULL) !== NULL) {
 			$this->generator->generateTarget($route, $request);
 
 			exit(0);
