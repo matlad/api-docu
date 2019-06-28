@@ -12,6 +12,7 @@ namespace Ublaboo\ApiDocu\DI;
 
 use Nette\DI\CompilerExtension;
 use Nette\DI\Helpers;
+use Nette\PhpGenerator\ClassType as GClassType;
 use Ublaboo\ApiDocu\Generator;
 use Ublaboo\ApiDocu\Starter;
 
@@ -55,7 +56,7 @@ class ApiDocuExtension extends CompilerExtension
 			->setArguments([
 				$builder->getDefinition($this->prefix('generator')),
 				$builder->getDefinition('router'),
-			])->addTag('run');
+			]);
 	}
 
 
@@ -70,4 +71,10 @@ class ApiDocuExtension extends CompilerExtension
 
 		return $config;
 	}
+
+    public function afterCompile(GClassType $class)
+    {
+        parent::afterCompile($class);
+        $class->getMethod('initialize')->addBody('$this->getService(?);', [$this->definition->getName()]);
+    }
 }
